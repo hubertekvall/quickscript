@@ -123,7 +123,7 @@ private static Variant[] toPostFix(ParseTree pt){
 static void run(string script){
     import std.exception : collectException;
     Variant[] instructions;
-    try{
+    
         instructions = QuickParse(script).toPostFix;
         foreach(i; instructions){
             if(i.type == typeid(funcType)){
@@ -133,10 +133,7 @@ static void run(string script){
                 stack ~= i;
             }
         }
-        
-    } catch(Exception e){
-        writeln(e);
-    }
+     
 }
 
 
@@ -159,5 +156,5 @@ version(unittest){
 unittest{
     registerFunctions!(Foo, Bar, FooBar);
 
-    run("Foo 45 Bar 'Hello' FooBar ");
+    run("Foo 45 Bar 'Hello' FooBar 13.37");
 }
