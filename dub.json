@@ -1,0 +1,14 @@
+{
+	"name": "quickscript",
+	"authors": [
+		"Hubert Ekvall"
+	],
+	"copyright": "Copyright 2017, Hubert Ekvall",
+	"license": "MIT",
+
+	"description": "Utility for quick and automatic scripting of functions",
+	"dependencies": {
+		"pegged": "~>0.4.1"
+	}
+	
+}
