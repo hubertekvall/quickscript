@@ -19,7 +19,7 @@ private static T popStack(T)() {
 
 
 
-static void run(string script) {
+static Variant run(string script) {
     Variant[] instructions = QuickParse(script).toPostFix;
     stack = [];
 
@@ -31,6 +31,9 @@ static void run(string script) {
             stack ~= i;
         }
     }
+
+    if(stack.length) return stack.back;
+    else return Variant();
 }
 
 
@@ -113,25 +116,17 @@ static auto buildParameters(alias func)(){
 
 
 version (unittest) {
-    int Foo(int x, int y) {
-        writeln("Foo!");
-        return x*y;
+    int square(int x){
+        auto value = x*x;
+        writeln("Squared: ", value);
+        return value; 
     }
 
-    void Bar(int x) {
-        writeln("Bar! ", x);
-    }
-
-    void FooBar(){
-        writeln("FooBar!");
-    }
 }
 
 unittest {
-    registerFunctions!(Foo, Bar, FooBar);
-    run("
-      Foo 666 1337 Bar;
-      FooBar;
-      ");
-
+    registerFunctions!(square);
+    auto value = run("square 32 square");
+    int myInt = value.get!int;
+    assert(myInt == square(square(32)));
 }
