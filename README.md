@@ -41,8 +41,8 @@ registerFunctions!(square);
 /*  
     Give the runtime a string containing your script.
     Basic syntax: FunctionIdentifier Arguments
-    Functions are executed from left-to-right taking the previous output as input applicable
-    After the execution a Variant is returned from the top of the stack
+    Functions are executed from left-to-right taking the previous output as input if available.
+    After the execution a Variant is returned containing the value at the top of the stack
 */    
 auto value = run("square 32 square");
 
