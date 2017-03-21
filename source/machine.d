@@ -31,7 +31,6 @@ static void run(string script) {
             stack ~= i;
         }
     }
-
 }
 
 
@@ -67,22 +66,15 @@ private static Variant[] toPostFix(ParseTree pt) {
 
 
 
-
-
-
 static void registerFunctions(F...)(){
     foreach(f; F){
         register!(f);
     }
 }
 
-
 static void register(alias func)() {
     static assert(isFunction!(func));
-
     auto name = __traits(identifier, func);
-    alias params = Parameters!func;
-
     const char[] pmixin = buildParameters!func;
 
     funcType dg = delegate() {
@@ -97,12 +89,11 @@ static void register(alias func)() {
     functionTable[name] = dg;
 }
 
-
 static auto buildParameters(alias func)(){
     string buf = "func(";
     foreach(i,t; Parameters!func){
         if(i > 0) buf ~= ", popStack!" ~ t.stringof;
-        else buf ~= "popStack!" ~ t.stringof;
+             else buf ~= "popStack!" ~ t.stringof;
     }
     return buf ~ ")";
 }
@@ -121,26 +112,26 @@ static auto buildParameters(alias func)(){
 
 
 
-
-
-
-
-
-
 version (unittest) {
     int Foo(int x, int y) {
-        writeln("Foo! ");
+        writeln("Foo!");
         return x*y;
     }
 
     void Bar(int x) {
         writeln("Bar! ", x);
     }
+
+    void FooBar(){
+        writeln("FooBar!");
+    }
 }
 
 unittest {
-    registerFunctions!(Foo, Bar);
-    ("Foo 666 1337 Bar;
-      Bar 2000;").run;
+    registerFunctions!(Foo, Bar, FooBar);
+    run("
+      Foo 666 1337 Bar;
+      FooBar;
+      ");
 
 }
