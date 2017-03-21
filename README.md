@@ -6,10 +6,13 @@
 This can be useful for configuration files or for writing command consoles
 in games or other applications that have a need for fast iteration times.
 
+
 ## Todo
-- Improve error handling, it shouldn't crash when given faulty input.
+- Can only handle static or module level functions right now
+- Improve error handling, it shouldn't crash when given faulty input
 - Basic arithmetic
 - Optimizations
+
 
 ## How to use
 You will need:
@@ -19,6 +22,7 @@ You will need:
 Clone this repository and run "dub test" to see if it works as it should.
 Compile times can be a bit long because this project uses [pegged](https://github.com/PhilippeSigaud/Pegged/)
 as dependency.
+
 
 ```D
 import quickscript.machine, std.stdio;
