@@ -21,7 +21,7 @@ You will need:
 
 Clone this repository and run "dub test" to see if it works as it should.
 Compile times can be a bit long because this project uses [pegged](https://github.com/PhilippeSigaud/Pegged/)
-as dependency.
+as a dependency.
 
 
 ```D
