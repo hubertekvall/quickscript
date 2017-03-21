@@ -7,7 +7,6 @@ public import pegged.grammar;
 
 mixin(grammar(`
 QuickParse:
-    Script       <  Expression* 
     Expression   <  FunctionCall*  
     FunctionCall <  identifier Primary?
     Primary      <  (Floating/Integer/String) Primary?
