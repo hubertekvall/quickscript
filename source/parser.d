@@ -1,5 +1,5 @@
 module quickscript.parser;
-import std.stdio;
+import quickscript.machine;
 public import pegged.grammar;
 
 
@@ -8,15 +8,13 @@ public import pegged.grammar;
 mixin(grammar(`
 QuickParse:
     Script       <  Expression* 
-    Expression   <  FunctionCall*  
-    FunctionCall <  identifier Primary*
-    Primary      <  (Floating/Unsigned/Integer/String)
+    Expression   <  FunctionCall* ';'  
+    FunctionCall <  identifier Primary?
+    Primary      <  (Floating/Integer/String) Primary?
     Floating     <~ '-'? Integer ('.' Integer )
-    Unsigned     <~ '-' Integer
-    Integer      <~ [0-9]+
+    Integer      <~ '-'? [0-9]+
     String       <~ :(doublequote/quote) ([spacing a-z A-Z 0-9])* :(doublequote/quote)
 `));
-
 
 
 
