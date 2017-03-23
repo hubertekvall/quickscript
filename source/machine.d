@@ -12,9 +12,12 @@ private static funcType[string] functionTable;
 private static Variant[] stack;
 
 private static T popStack(T)() {
-    Variant value = stack.back;
-    stack.popBack;
-    return value.get!T();
+    if(stack.length) {
+        Variant value = stack.back;
+        stack.popBack;
+        return value.get!T();
+    }
+    else return T.init;
 }
 
 
