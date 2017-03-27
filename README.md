@@ -8,6 +8,7 @@ in games or other applications that have a need for fast iteration times.
 
 
 ## Todo
+- Automatic Hotloading of source files
 - Can only handle static or module level functions right now
 - Improve error handling, it shouldn't crash when given faulty input
 - Basic arithmetic
